@@ -39,7 +39,9 @@ yarn start
 A number of node.js tools is necessary to initialize and test the project. You must have node.js and its package manager (npm) installed. You can get them from  [http://nodejs.org/](http://nodejs.org/). The tools/modules used in this project are listed in package.json and include express, mongodb.
 
 #### MongoDB
-The project uses MongoDB as a database. If you are on Mac and using Homebrew package manager the installation is as simple as `brew install mongodb`.
+The project uses MongoDB as a database.
+
+
 ### Start MongoDB
 
 Ubuntu
