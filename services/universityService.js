@@ -10,7 +10,19 @@ const getUniversityByCountry = async (country) => {
   return universities;
 };
 
+const getUniversityById = async (id) => {
+  const universities = await universityModel.getUniversityById(id);
+  return universities;
+};
+
+const createUniversity = async (alpha_two_code, web_pages, name, country, domains, state_province) => {
+  const newUniversity = await universityModel.createUniversity(alpha_two_code, web_pages, name, country, domains, state_province);
+  return newUniversity;
+};
+
 module.exports = {
   getAllUniversities,
   getUniversityByCountry,
+  getUniversityById,
+  createUniversity,
 };

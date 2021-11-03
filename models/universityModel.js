@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const connect = require('./connection');
 
 const getAllUniversities = async () => {
@@ -14,7 +15,22 @@ const getUniversityByCountry = async (countryName) => {
   return universities;
 };
 
+const getUniversityById = async (id) => {
+  if (!ObjectId.isValid(id)) return null;
+
+  const universities = await connect()
+    .then((db) => db.collection('universities').findOne(ObjectId(id)));
+  return universities;
+};
+
+const createUniversity = async (alpha_two_code, web_pages, name, country, domains, state_province) =>
+  connect().then((db) =>
+    db.collection('universities').insertOne({ alpha_two_code, web_pages, name, country, domains, state_province }))
+    .then((result) => result);
+
 module.exports = {
   getAllUniversities,
-  getUniversityByCountry
+  getUniversityByCountry,
+  getUniversityById,
+  createUniversity
 };
