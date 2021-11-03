@@ -49,8 +49,21 @@ const createUniversity = async (req, res, next) => {
   next();
 };
 
+const updateUniversity = async (req, res) => {
+  try {
+    const reqBody = req.body;
+    const { id } = req.params;
+    const modifyUniversity = await universityService.updateUniversity({ id, reqBody });
+    res.status(200).json(modifyUniversity);
+  } catch (error) {
+    res.status(500).json('Erro interno');
+    console.log(error);
+  }
+};
+
 module.exports = {
   getAllUniversities,
   getUniversityById,
   createUniversity,
+  updateUniversity,
 };

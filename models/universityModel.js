@@ -28,9 +28,23 @@ const createUniversity = async (alpha_two_code, web_pages, name, country, domain
     db.collection('universities').insertOne({ alpha_two_code, web_pages, name, country, domains, state_province }))
     .then((result) => result);
 
+const updateUniversity = async ({ id, reqBody }) => {
+  if (!ObjectId.isValid(id)) return null;
+
+  const modifyUniversity = await connect().then((db) =>
+    db.collection('universities')
+      .findOneAndUpdate(
+        { _id: ObjectId(id) },
+        { $set: reqBody },
+        { returnOriginal: false },
+      ));
+  return modifyUniversity.value;
+};
+
 module.exports = {
   getAllUniversities,
   getUniversityByCountry,
   getUniversityById,
-  createUniversity
+  createUniversity,
+  updateUniversity
 };

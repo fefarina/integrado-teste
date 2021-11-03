@@ -20,9 +20,15 @@ const createUniversity = async (alpha_two_code, web_pages, name, country, domain
   return newUniversity;
 };
 
+const updateUniversity = async ({ id, reqBody }) => {
+  const updatedUniversity = await universityModel.updateUniversity({ id, reqBody });
+  return updatedUniversity;
+};
+
 module.exports = {
   getAllUniversities,
   getUniversityByCountry,
   getUniversityById,
   createUniversity,
+  updateUniversity,
 };
