@@ -25,10 +25,16 @@ const updateUniversity = async ({ id, reqBody }) => {
   return updatedUniversity;
 };
 
+const deleteUniversity = async (id) => {
+  const universities = await universityModel.deleteUniversity(id);
+  return universities;
+};
+
 module.exports = {
   getAllUniversities,
   getUniversityByCountry,
   getUniversityById,
   createUniversity,
   updateUniversity,
+  deleteUniversity,
 };

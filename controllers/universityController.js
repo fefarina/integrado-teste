@@ -61,9 +61,24 @@ const updateUniversity = async (req, res) => {
   }
 };
 
+const deleteUniversity = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await universityService.deleteUniversity(id);
+    if (!id) {
+      return res.status(500).json('Internal Error');
+    }
+    res.status(204).json(deleted);
+  } catch (error) {
+    res.status(500).json('Internal Error');
+    console.log(error);
+  }
+};
+
 module.exports = {
   getAllUniversities,
   getUniversityById,
   createUniversity,
   updateUniversity,
+  deleteUniversity,
 };

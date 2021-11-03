@@ -41,10 +41,21 @@ const updateUniversity = async ({ id, reqBody }) => {
   return modifyUniversity.value;
 };
 
+const deleteUniversity = async (id) => {
+  if (!ObjectId.isValid(id)) return null;
+
+  await connect().then((db) =>
+    db.collection('universities')
+      .deleteOne(
+        { _id: ObjectId(id) },
+      ));
+};
+
 module.exports = {
   getAllUniversities,
   getUniversityByCountry,
   getUniversityById,
   createUniversity,
-  updateUniversity
+  updateUniversity,
+  deleteUniversity
 };
